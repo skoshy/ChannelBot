@@ -1,36 +1,36 @@
-const secretConfig = require('./.config.secret')
-const Discord = require('discord.js')
-const client = new Discord.Client()
+const Discord = require(`discord.js`);
+const secretConfig = require(`./.config.secret`);
+const client = new Discord.Client();
 
 const invokeCommands = [
-  "!channel ",
-  "!c ",
+  `!channel `,
+  `!c `,
 ];
 const commands = {
-  "create": [],
+  create: [],
 };
 
-client.on('message', (receivedMessage) => {
+client.on(`message`, (receivedMessage) => {
   // Prevent bot from responding to its own messages
-  if (receivedMessage.author == client.user) {
-    return
+  if (receivedMessage.author === client.user) {
+    return;
   }
 
   // parse message for commands
   invokeCommands.forEach((invokeCommand) => {
     if (receivedMessage.content.substr(0, invokeCommand.length) === invokeCommand) {
       // invoke command has been used
-      receivedMessage.channel.send("Invoke command used: " + receivedMessage.content)
-      receivedMessage.guild.createChannel('new-general', 'text');
+      receivedMessage.channel.send(`Invoke command used: ${receivedMessage.content}`);
+      receivedMessage.guild.createChannel(`new-general`, `text`);
     }
   });
-})
+});
 
-client.login(secretConfig.discord.secretToken)
-  
+client.login(secretConfig.discord.secretToken);
+
 function findPrivateChannelCategory(channels) {
   channels.forEach((channel, channelId) => {
-    if (channel.type === 'category') {
+    if (channel.type === `category`) {
       return channelId;
     }
   });
