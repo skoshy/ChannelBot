@@ -1,0 +1,6 @@
+run = "npm start"
+onBoot = "npm install && echo Booting up!"
+language = "typescript"
+
+[packager]
+ignoredPaths=[".git"]

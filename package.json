@@ -2,9 +2,9 @@
   "name": "channelbot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./build/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "etsc && node ./build/index.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,14 +19,19 @@
   },
   "homepage": "https://github.com/skoshy/ChannelBot#readme",
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.4.2",
+    "express": "^4.17.1",
+    "lodash": "4.17.20"
   },
   "devDependencies": {
+    "@types/node": "^14.14.6",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "tsc-watch": "4.2.9",
+    "typescript": "4.0.5"
   }
 }
