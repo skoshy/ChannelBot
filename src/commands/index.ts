@@ -1,1 +1,1 @@
-export * from 'src/commands/pin';
+export * from './pin';

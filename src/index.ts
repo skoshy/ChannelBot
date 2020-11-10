@@ -1,7 +1,7 @@
 import * as Discord from 'discord.js';
-import { keepAlive } from 'src/server';
-import { processPin } from 'src/commands';
-import { doesCommandMatchContent } from 'src/utils';
+import { processPin } from './commands';
+import { keepAlive } from './server';
+import { doesCommandMatchContent } from './utils';
 
 const { DISCORD_BOT_SECRET_TOKEN } = process.env;
 
