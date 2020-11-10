@@ -1,35 +1,31 @@
 import * as Discord from 'discord.js';
-import { values } from 'lodash';
-import { keepAlive } from './server';
-
-const client = new Discord.Client();
+import { keepAlive } from 'src/server';
+import { processPin } from 'src/commands';
+import { doesCommandMatchContent } from 'src/utils';
 
 const { DISCORD_BOT_SECRET_TOKEN } = process.env;
 
-const invokeCommands = [
-  `!channel `,
-  `!c `,
-  `!pin `,
-];
+const client = new Discord.Client();
+
 const commands = {
-  create: [],
+  '!pin': processPin,
 };
 
-client.on(`message`, (receivedMessage) => {
-  console.log(
-    'received message',
-  );
-
-  console.log(receivedMessage.channel.messages);
-
+client.on(`message`, async (receivedMessage) => {
   // Prevent bot from responding to its own messages
   if (receivedMessage.author.id === client.user.id) {
     return;
   }
 
-  if (receivedMessage.content === '!pin') {
-    values(receivedMessage.channel.messages).slice(-1).pin();
-  }
+  // cycle through commands
+  Object.keys(commands).some((command) => {
+    if (doesCommandMatchContent(command, receivedMessage.content)) {
+      commands[command](receivedMessage);
+      return true;
+    }
+
+    return false;
+  });
 
   // // parse message for commands
   // invokeCommands.forEach((invokeCommand) => {
@@ -42,10 +38,6 @@ client.on(`message`, (receivedMessage) => {
   // });
 });
 
-keepAlive();
-client.login(DISCORD_BOT_SECRET_TOKEN);
-
-console.log('Logged in');
 
 function findPrivateChannelCategory(channels) {
   channels.forEach((channel, channelId) => {
@@ -56,3 +48,7 @@ function findPrivateChannelCategory(channels) {
 
   return false;
 }
+
+client.login(DISCORD_BOT_SECRET_TOKEN);
+console.log(`Logged in`);
+keepAlive();
