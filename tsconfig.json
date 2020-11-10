@@ -14,6 +14,9 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "outDir": "./build",
+    "baseUrl": "./",
+    "paths": {}
   },
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "build"],
+  "include": ["src"]
 }

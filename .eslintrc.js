@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
@@ -14,7 +14,19 @@ module.exports = {
   },
   plugins: [
     'react',
+    'import',
   ],
+  settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".js", ".jsx", ".ts", ".tsx"],
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["./"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   extends: [
     'plugin:react/recommended',
     'airbnb',
