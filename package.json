@@ -21,7 +21,7 @@
   "homepage": "https://github.com/skoshy/ChannelBot#readme",
   "dependencies": {
     "discord.js": "12.4.1",
-    "express": "4.17.1",
+    "express": "4.18.2",
     "lodash": "4.17.20"
   },
   "devDependencies": {
